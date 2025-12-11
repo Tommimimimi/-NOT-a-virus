@@ -25,8 +25,8 @@ namespace BouncyForm
             this.FormBorderStyle = FormBorderStyle.None;
             xPos = random.Next(100, Screen.PrimaryScreen.WorkingArea.Width - 100);
             yPos = random.Next(100, Screen.PrimaryScreen.WorkingArea.Height - 100);
-            xMove = random.Next(-40, 40);
-            yMove = random.Next(-40, 40);
+            xMove = random.Next(-4, 4);
+            yMove = random.Next(-4, 4);
             timer1.Interval = 10;
             this.DoubleBuffered = true;
         }
@@ -70,7 +70,7 @@ namespace BouncyForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(20, 20);
+            this.Size = new Size(random.Next(1, 100), random.Next(1, 100));
             KnownColor kc = (KnownColor)values.GetValue(random.Next(28,167));
             this.BackColor = Color.FromKnownColor(kc);
         }
