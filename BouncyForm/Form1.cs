@@ -25,8 +25,8 @@ namespace BouncyForm
             this.FormBorderStyle = FormBorderStyle.None;
             xPos = random.Next(100, Screen.PrimaryScreen.WorkingArea.Width - 100);
             yPos = random.Next(100, Screen.PrimaryScreen.WorkingArea.Height - 100);
-            xMove = random.Next(-4, 4);
-            yMove = random.Next(-4, 4);
+            xMove = random.Next(-40, 40);
+            yMove = random.Next(-40, 40);
             timer1.Interval = 10;
             this.DoubleBuffered = true;
         }
@@ -37,8 +37,11 @@ namespace BouncyForm
             {
                 if (++currentForms < 3)
                 {
-                    Form1 newForm = new Form1();
-                    newForm.Show();
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Form1 newForm = new Form1();
+                        newForm.Show();
+                    }
                 }
                 xMove = -xMove;
             }
@@ -46,8 +49,11 @@ namespace BouncyForm
             {
                 if (++currentForms < 2)
                 {
-                    Form1 newForm = new Form1();
-                    newForm.Show();
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Form1 newForm = new Form1();
+                        newForm.Show();
+                    }
                 }
                 yMove = -yMove;
             }
@@ -66,6 +72,8 @@ namespace BouncyForm
         {
             MoveForm();
             this.TopMost = true;
+            this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void Form1_Load(object sender, EventArgs e)
