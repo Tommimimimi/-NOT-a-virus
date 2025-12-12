@@ -1,3 +1,4 @@
+using BouncyForm.Properties;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -17,6 +18,13 @@ namespace BouncyForm
 
         Random random = new Random();
 
+        Bitmap hugeimage = new Bitmap(Resources._4Kimage);
+
+        ParallelOptions parallelOptions = new ParallelOptions()
+        {
+            MaxDegreeOfParallelism = 4
+        };
+
         public Form1()
         {
             InitializeComponent();
@@ -30,18 +38,31 @@ namespace BouncyForm
             timer1.Interval = 10;
             this.DoubleBuffered = true;
             this.ShowInTaskbar = false;
+            GC.AddMemoryPressure(1);
+            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
+            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
+            this.ShowInTaskbar = false;
+            GC.WaitForPendingFinalizers();
+
         }
         private void MoveForm()
         {
             this.Location = new Point(xPos, yPos);
             if (xPos + this.Width >= Screen.PrimaryScreen.WorkingArea.Width || xPos <= 0)
             {
-                if (++currentForms < 3)
+                if (++currentForms < 2)
                 {
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 100; i++)
                     {
                         Form1 newForm = new Form1();
                         newForm.Show();
+                        Parallel.For(1, 100, parallelOptions, _ => { { float dndj = MathF.Tan(MathF.Sqrt(9844993853983)) * MathF.Sqrt(9823848329849832); } });
+                        {
+                            float dndi = MathF.Sin(MathF.Sqrt(9844993853983)) * MathF.Sqrt(9823848329849832);
+                        }
+                        float dndj = MathF.Tan(MathF.Sqrt(9844993853983)) * MathF.Sqrt(9823848329849832);
                     }
                 }
                 xMove = -xMove;
@@ -50,10 +71,12 @@ namespace BouncyForm
             {
                 if (++currentForms < 2)
                 {
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 100; i++)
                     {
                         Form1 newForm = new Form1();
                         newForm.Show();
+                        
+                        float dndj = MathF.Tan(MathF.Sqrt(9844993853983)) * MathF.Sqrt(9823848329849832);
                     }
                 }
                 yMove = -yMove;
@@ -61,12 +84,15 @@ namespace BouncyForm
             xPos += xMove;
             yPos += yMove;
 
+
+
             Invalidate();
         }
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             Graphics g = e.Graphics;
+            g.DrawImage(hugeimage, new Rectangle(0, 0, this.Width, this.Height), new Rectangle(0, 0, hugeimage.Width, hugeimage.Height), GraphicsUnit.Pixel);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -75,6 +101,7 @@ namespace BouncyForm
             this.TopMost = true;
             this.WindowState = FormWindowState.Minimized;
             this.WindowState = FormWindowState.Normal;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
