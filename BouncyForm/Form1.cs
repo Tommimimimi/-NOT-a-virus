@@ -29,6 +29,7 @@ namespace BouncyForm
             yMove = random.Next(-40, 40);
             timer1.Interval = 10;
             this.DoubleBuffered = true;
+            this.ShowInTaskbar = false;
         }
         private void MoveForm()
         {
